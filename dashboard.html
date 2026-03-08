@@ -4,8 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-  <body>
-    <h1>Hello</h1>
+  <body class="bg-slate-50 text-gray-800">
+    <nav
+      class="bg-white border-b border-gray-200 px-6 py-3 flex justify-between items-center"
+    >
+      <div class="flex items-center gap-2 font-bold text-lg">
+        <img src="./resources/github-logo.png" alt="" class="w-7 h-6" />
+        <h1 class="text-xl">GitHub Issues Tracker</h1>
+      </div>
+      <div class="flex gap-2">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search issues..."
+          class="border border-gray-300 rounded px-3 py-1 text-sm focus:outline-blue-500"
+        />
+        <button
+          id="searchBtn"
+          class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700"
+        >
+          + New Issue
+        </button>
+      </div>
+    </nav>
+    
   </body>
 </html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Dashboard - GitHub Issues</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body class="bg-slate-50 text-gray-800">
@@ -23,12 +23,126 @@
         />
         <button
           id="searchBtn"
-          class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700"
+          class="bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700"
         >
           + New Issue
         </button>
       </div>
     </nav>
-    
+    <main class="p-6 max-w-7xl mx-auto">
+      <div
+        class="flex gap-2 mb-6 border border-gray-200 bg-white p-2 rounded w-fit"
+      >
+        <button
+          class="tab-btn active-tab px-6 py-1 rounded text-sm font-medium bg-blue-600 text-white transition"
+          data-status="all"
+        >
+          All
+        </button>
+        <button
+          class="tab-btn px-6 py-1 rounded text-sm font-medium text-gray-600 hover:bg-gray-100 transition"
+          data-status="open"
+        >
+          Open
+        </button>
+        <button
+          class="tab-btn px-6 py-1 rounded text-sm font-medium text-gray-600 hover:bg-gray-100 transition"
+          data-status="closed"
+        >
+          Closed
+        </button>
+      </div>
+
+      <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center gap-2">
+          <div class="bg-purple-100 text-purple-600 p-2 rounded-full">
+            <img src="./resources/Aperture.png" alt="" class="w-5 h-5" />
+          </div>
+          <div>
+            <h2 class="font-bold text-lg">
+              <span id="issueCount">0</span>
+              Issues
+            </h2>
+            <p class="text-xs text-gray-500">
+              Track and manage your project issues
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4 text-sm text-gray-600 font-medium">
+          <span class="flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+            Open
+          </span>
+          <span class="flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+            Closed
+          </span>
+        </div>
+      </div>
+
+      <div
+        id="loader"
+        class="hidden flex justify-center items-center py-10 w-10 h-10 border-4 border-gray-200 border-t-[#3498db] rounded-full animate-spin"
+      >
+        <div class="loader"></div>
+      </div>
+
+      <div
+        id="issuesGrid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+      ></div>
+    </main>
+
+    <div
+      id="issueModal"
+      class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-white rounded-lg shadow-xl w-full max-w-2xl overflow-hidden relative"
+      >
+        <div class="p-6">
+          <h2 id="modalTitle" class="text-xl font-bold mb-2">Issue Title</h2>
+          <div class="flex items-center gap-2 mb-4 text-xs text-gray-500">
+            <span
+              id="modalStatus"
+              class="px-2 py-1 rounded text-white font-bold uppercase"
+            >
+              Open
+            </span>
+            <span id="modalMeta">Opened by ... on ...</span>
+          </div>
+          <div class="flex gap-2 mb-4" id="modalLabels"></div>
+          <p id="modalDesc" class="text-gray-700 text-sm mb-6 border-b pb-4">
+            Description goes here
+          </p>
+
+          <div class="flex gap-8 mb-6">
+            <div>
+              <p class="text-xs text-gray-500 mb-1">Assignee:</p>
+              <p id="modalAssignee" class="font-semibold text-sm">Name</p>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 mb-1">Priority:</p>
+              <span
+                id="modalPriority"
+                class="px-2 py-1 text-xs rounded bg-red-100 text-red-600 font-bold uppercase"
+              >
+                HIGH
+              </span>
+            </div>
+          </div>
+
+          <div class="flex justify-end">
+            <button
+              id="closeModalBtn"
+              class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
   </body>
 </html>

@@ -11,7 +11,5 @@ loginForm.addEventListener('submit', function (e) {
   if (user === 'admin' && pass === 'admin123') {
     localStorage.setItem('isAuthenticated', 'true');
     window.location.href = 'dashboard.html';
-  } else {
-    alert('Invalid credentials. Please use admin / admin123');
   }
 });

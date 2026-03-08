@@ -137,3 +137,23 @@ async function openModal(id) {
     hideLoader();
   }
 }
+tabs.forEach(tab => {
+  tab.addEventListener('click', e => {
+    tabs.forEach(t => {
+      t.classList.remove('bg-blue-600', 'text-white', 'active-tab');
+      t.classList.add('text-gray-600', 'hover:bg-gray-100');
+    });
+    const clicked = e.target;
+    clicked.classList.remove('text-gray-600', 'hover:bg-gray-100');
+    clicked.classList.add('bg-blue-600', 'text-white', 'active-tab');
+
+    currentTab = clicked.dataset.status;
+    renderIssues();
+  });
+});
+searchInput.addEventListener('keypress', e => {
+  if (e.key === 'Enter') {
+    const query = searchInput.value.trim();
+    fetchIssues(query);
+  }
+});

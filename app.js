@@ -157,3 +157,18 @@ searchInput.addEventListener('keypress', e => {
     fetchIssues(query);
   }
 });
+closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
+modal.addEventListener('click', e => {
+  if (e.target === modal) modal.classList.add('hidden'); // Close on backdrop click
+});
+
+function showLoader() {
+  loader.classList.remove('hidden');
+  grid.classList.add('hidden');
+}
+function hideLoader() {
+  loader.classList.add('hidden');
+  grid.classList.remove('hidden');
+}
+
+fetchIssues();
